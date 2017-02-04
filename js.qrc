@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/js">
+        <file>line.js</file>
+        <file>main.js</file>
+        <file>vertex.js</file>
+    </qresource>
+</RCC>
