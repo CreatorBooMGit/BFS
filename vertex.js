@@ -7,6 +7,14 @@ var vertexRoot = null;
 
 var xLast = 0, yLast = 0;
 
+Array.prototype.remove = function(value) {
+    var idx = this.indexOf(value);
+    if (idx !== -1) {
+        return this.splice(idx, 1);
+    }
+    return false;
+}
+
 function setVertexRoot(vertex)
 {
     vertexRoot = vertex;
@@ -16,19 +24,31 @@ function setVertexRoot(vertex)
 
 function addEdge(edge){
     edges.push(edge);
-    console.log("add edge:", edge);
-    console.log("edges:", edges);
+//    console.log("add edge:", edge);
+//    console.log("edges:", edges);
 }
 
-function deleteEdge(edge)
+function removeEdge(edge)
 {
+    edges.remove(edge)
+//    console.log(edges)
+}
 
+function destroy()
+{
+//    console.log("edges.length:", edges.length)
+//    console.log("edges:", edges)
+    for(var i = 0; i < edges.length; )
+        edges[i].destroySignal()
+
+    MainLogic.deleteVertex(vertexRoot)
+    vertexRoot.destroy()
 }
 
 function checkEdge(vertex)
 {
-    console.log("edges(vertex):", edges)
-    console.log("edges(vertex).length:", edges.length)
+//    console.log("edges(vertex):", edges)
+//    console.log("edges(vertex).length:", edges.length)
     for(var i = 0; i < edges.length; i++)
         if(!edges[i].checkEdge(vertex))
             return false;

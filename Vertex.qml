@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 1.4
 import "qrc:/js/vertex.js" as VertexLogic
 import "qrc:/js/main.js" as MainLogic
 
@@ -8,15 +9,25 @@ Rectangle {
     property int numVertex : -1
 
     signal addEdge(var edge)
+    signal removeEdge(var edge)
     signal checkEdge(var vertex)
+    signal destroySignal()
 
     onAddEdge: {
-        console.log("onAddEdge:", edge)
+//        console.log("onAddEdge:", edge)
         VertexLogic.addEdge(edge)
+    }
+
+    onRemoveEdge: {
+        VertexLogic.removeEdge(edge)
     }
 
     onCheckEdge: {
         return VertexLogic.checkEdge(vertex)
+    }
+
+    onDestroySignal: {
+        VertexLogic.destroy()
     }
 
 //    Connections {
@@ -44,6 +55,7 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
+        acceptedButtons: Qt.RightButton | Qt.LeftButton
 
         onClicked: {
             if(MainLogic.getNewItemState() === 0 || MainLogic.getNewItemState() === 1)
@@ -53,6 +65,10 @@ Rectangle {
             if(MainLogic.getNewItemState() === 2)
             {
                 MainLogic.addEdge(root);
+            }
+            if(mouse.button & Qt.RightButton)
+            {
+                contextVertex.popup()
             }
 
 //            console.log("clickedVertex");
@@ -81,5 +97,16 @@ Rectangle {
     }
     onYChanged: {
         VertexLogic.changedPosition()
+    }
+
+    Menu {
+        id: contextVertex
+
+        MenuItem {
+            text: "Удалить"
+            onTriggered: {
+                VertexLogic.destroy()
+            }
+        }
     }
 }

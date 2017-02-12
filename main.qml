@@ -19,8 +19,27 @@ import "qrc:/js/main.js" as MainLogic
         property int chooseItemState : 0
 
         Component.onCompleted: {
+            graph.slotSetRoot(root)
             MainLogic.setRoot(root)
+            MainLogic.setGraph(graph)
         }
+
+        function methodClearLightingEdges()
+        {
+            MainLogic.clearLightingEdges()
+        }
+
+        function methodAddLightingEdge(edge)
+        {
+            console.log(edge);
+            MainLogic.addLightingEdge(edge)
+        }
+
+        function methodClearScene()
+        {
+            MainLogic.deleteAllVertices()
+        }
+
 
         Action {
             id: cancelAction

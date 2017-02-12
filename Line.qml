@@ -25,6 +25,7 @@ Rectangle {
     signal setVertices(var vertexLeft, var vertexRight)
     signal checkEdge(var vertex)
     signal lightingEdge(var enable)
+    signal destroySignal()
 
     onCheckEdge: {
         if((LineLogic.vertexLeft === vertex || LineLogic.vertexRight === vertex))
@@ -53,6 +54,10 @@ Rectangle {
         edgeLighting = enable;
     }
 
+    onDestroySignal: {
+        LineLogic.destroy()
+    }
+
 
     x: x1
     y: y1
@@ -64,7 +69,7 @@ Rectangle {
     rotation: LineLogic.getAngle(x1, y1, x2, y2)
 
     onRotationChanged: {
-        console.log("rotation:", rotation)
+//        console.log("rotation:", rotation)
 //        if(root.rotation > 90 && root.rotation < 270)
 //            text.anchors.top = root.bottom
 //        else
@@ -101,10 +106,10 @@ Rectangle {
 
         onClicked: {
             LineLogic.lightingEdge()
-            console.log("dadadaa")
+//            console.log("dadadaa")
             if(mouse.button & Qt.RightButton)
             {
-                console.log("dadadaa2")
+//                console.log("dadadaa2")
                 contextEdge.popup()
             }
         }
@@ -125,7 +130,6 @@ Rectangle {
 
     Menu {
         id: contextEdge
-        title: "Ребро"
 
         MenuItem {
             text: "Удалить"
@@ -136,27 +140,29 @@ Rectangle {
         MenuItem {
             text: "Направление"
 
-//            Menu {
-//                MenuItem {
-//                    text: "Направленный"
-//                    checkable: true
-//                    onTriggered: {
-//                        LineLogic.directed = checked
-//                        direction.enabled = checked
-//                    }
-//                }
-//                MenuItem {
-//                    id: direction
+            //            Menu {
+            //                id: directionMenu
 
-//                    text: {
-//                        if(LineLogic.directed)
-//                            LineLogic.vertexLeft.numVertex + " -> " + LineLogic.vertexRight.numVertex
-//                        else
-//                            LineLogic.vertexLeft.numVertex + " <-> " + LineLogic.vertexRight.numVertex
-//                    }
-//                    onTriggered: LineLogic.swapVertex()
-//                }
-//            }
+            //                MenuItem {
+            //                    text: "Направленный"
+            //                    checkable: true
+            //                    onTriggered: {
+            //                        LineLogic.directed = checked
+            //                        direction.enabled = checked
+            //                    }
+            //                }
+            //                MenuItem {
+            //                    id: direction
+
+            //                    text: {
+            //                        if(LineLogic.directed)
+            //                            LineLogic.vertexLeft.numVertex + " -> " + LineLogic.vertexRight.numVertex
+            //                        else
+            //                            LineLogic.vertexLeft.numVertex + " <-> " + LineLogic.vertexRight.numVertex
+            //                    }
+            //                    onTriggered: LineLogic.swapVertex()
+            //                }
+            //            }
         }
     }
 }

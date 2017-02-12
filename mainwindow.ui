@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>1</number>
+    </property>
+    <property name="topMargin">
+     <number>2</number>
+    </property>
+    <property name="rightMargin">
+     <number>1</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="data">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_6" rowstretch="3,2">
+        <property name="leftMargin">
+         <number>4</number>
+        </property>
+        <property name="topMargin">
+         <number>4</number>
+        </property>
+        <property name="rightMargin">
+         <number>4</number>
+        </property>
+        <property name="bottomMargin">
+         <number>4</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBoxIncidence">
+          <property name="title">
+           <string>Матрица инцидентности</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
+            <number>2</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="tableIncidence">
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::ExtendedSelection</enum>
+             </property>
+             <property name="textElideMode">
+              <enum>Qt::ElideMiddle</enum>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::SolidLine</enum>
+             </property>
+             <attribute name="horizontalHeaderCascadingSectionResizes">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>30</number>
+             </attribute>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBoxAdjancency">
+          <property name="title">
+           <string>Матрица смежности</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
+            <number>2</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="tableAdjacency">
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectItems</enum>
+             </property>
+             <property name="textElideMode">
+              <enum>Qt::ElideMiddle</enum>
+             </property>
+             <property name="verticalScrollMode">
+              <enum>QAbstractItemView::ScrollPerItem</enum>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::SolidLine</enum>
+             </property>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="horizontalHeaderMinimumSectionSize">
+              <number>30</number>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>30</number>
+             </attribute>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>Поиск в ширину</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <property name="leftMargin">
+            <number>2</number>
+           </property>
+           <property name="topMargin">
+            <number>2</number>
+           </property>
+           <property name="rightMargin">
+            <number>2</number>
+           </property>
+           <property name="bottomMargin">
+            <number>2</number>
+           </property>
+           <item row="3" column="1" colspan="2">
+            <widget class="QListWidget" name="listWidgetPath">
+             <property name="viewMode">
+              <enum>QListView::ListMode</enum>
+             </property>
+             <property name="modelColumn">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="2">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QLabel" name="labelVertex">
+               <property name="text">
+                <string>Вершина</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>0</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonExecute">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Выполнить</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="graph">
+       <attribute name="title">
+        <string>Tab 2</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Система</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Проект</string>
+    </property>
+    <addaction name="actionCreate"/>
+    <addaction name="actionDownload"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Результат</string>
+    </property>
+    <addaction name="actionSaveResult"/>
+    <addaction name="actionClear"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/exit.png</normaloff>:/icons/icons/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="actionCreate">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/file.png</normaloff>:/icons/icons/file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Создать</string>
+   </property>
+  </action>
+  <action name="actionDownload">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/download.png</normaloff>:/icons/icons/download.png</iconset>
+   </property>
+   <property name="text">
+    <string>Загрузить</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/save.png</normaloff>:/icons/icons/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/close.png</normaloff>:/icons/icons/close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть</string>
+   </property>
+  </action>
+  <action name="actionSaveResult">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/txt.png</normaloff>:/icons/icons/txt.png</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/error.png</normaloff>:/icons/icons/error.png</iconset>
+   </property>
+   <property name="text">
+    <string>Очистить пути</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

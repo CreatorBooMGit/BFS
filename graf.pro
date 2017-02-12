@@ -24,17 +24,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        widget.cpp \
     GrafScene.cpp \
-    GrafAlgorithm.cpp
+    GrafAlgorithm.cpp \
+    mainwindow.cpp
 
-HEADERS  += widget.h \
+HEADERS  += \
     GrafScene.h \
-    GrafAlgorithm.h
+    GrafAlgorithm.h \
+    mainwindow.h
 
-FORMS    += widget.ui
+FORMS    += \
+    mainwindow.ui
 
 RESOURCES += \
     js.qrc \
     qml.qrc \
-    images.qrc
+    images.qrc \
+    icons.qrc
