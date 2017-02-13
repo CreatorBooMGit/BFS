@@ -9,6 +9,7 @@ var sceneMouseArea = null
 var vertices = []
 var choosedVertex = null
 
+var matrixEdges = []
 var edges = []
 var edgesLighting = []
 var edgesChoosed = []
@@ -63,6 +64,11 @@ function addVertex() {
         childRec.numVertex = vertices.length + 1
         vertices.push(childRec)
         graph.slotAddVertex(childRec)
+        for(var i = 0; i < matrixEdges.length; i++)
+            matrixEdges[i].push(0);
+        matrixEdges.push([]);
+        for(var i = 0; i < matrixEdges.length; i++)
+            matrixEdges[matrixEdges.length - 1].push(0);
     }
 }
 
@@ -88,9 +94,17 @@ function addEdge(vertex) {
     if (tmpLeftVertexToNewEdge === null)
         tmpLeftVertexToNewEdge = vertex
     else if (tmpRightVertexToNewEdge === null)
-        //            if(tmpLeftVertexToNewEdge.checkEdge(tmpRightVertexToNewEdge))
+    {
         if(tmpLeftVertexToNewEdge !== vertex)
         {
+            if(matrixEdges[tmpLeftVertexToNewEdge.numVertex - 1][vertex.numVertex - 1] === 1 ||
+                    matrixEdges[vertex.numVertex - 1][tmpLeftVertexToNewEdge.numVertex - 1] === 1)
+                return;
+
+            for(var i = 0; i < matrixEdges.length; i++)
+                console.log(matrixEdges[i])
+            console.log("DADADA")
+
             tmpRightVertexToNewEdge = vertex
             var childRec = createEdge()
             tmpLeftVertexToNewEdge.addEdge(childRec)
@@ -98,8 +112,11 @@ function addEdge(vertex) {
             edges.push(childRec)
             graph.slotAddEdge(childRec, tmpLeftVertexToNewEdge.numVertex,
                               tmpRightVertexToNewEdge.numVertex, false)
+            matrixEdges[tmpLeftVertexToNewEdge.numVertex - 1][tmpRightVertexToNewEdge.numVertex - 1] = 1;
+            matrixEdges[tmpRightVertexToNewEdge.numVertex - 1][tmpLeftVertexToNewEdge.numVertex - 1] = 1;
             clearAddEdge()
         }
+    }
 }
 
 function deleteEdge(edge)
@@ -164,7 +181,7 @@ function getEdgeChecked() {
 function addAllEdge() {
 //    console.log("vertices.length:", vertices.length)
     for (var i = 0; i < vertices.length; i++) {
-        for (var j = i; j < vertices.length; j++) {
+        for (var j = 0; j < vertices.length; j++) {
             if (vertices[i] !== vertices[j]) {
                 //                console.log("pc");
                 addEdge(vertices[i])

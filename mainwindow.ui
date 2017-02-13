@@ -34,7 +34,7 @@
       </property>
       <widget class="QWidget" name="data">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Данные</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6" rowstretch="3,2">
         <property name="leftMargin">
@@ -259,7 +259,7 @@
       </widget>
       <widget class="QWidget" name="graph">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>Граф</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="sizeConstraint">
@@ -307,7 +307,9 @@
     </property>
     <addaction name="actionCreate"/>
     <addaction name="actionDownload"/>
+    <addaction name="separator"/>
     <addaction name="actionSave"/>
+    <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menu_3">
@@ -315,6 +317,7 @@
      <string>Результат</string>
     </property>
     <addaction name="actionSaveResult"/>
+    <addaction name="separator"/>
     <addaction name="actionClear"/>
    </widget>
    <addaction name="menu"/>
@@ -350,6 +353,9 @@
    </property>
   </action>
   <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/icons/icons/save.png</normaloff>:/icons/icons/save.png</iconset>
@@ -359,6 +365,9 @@
    </property>
   </action>
   <action name="actionClose">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/icons/icons/close.png</normaloff>:/icons/icons/close.png</iconset>
@@ -368,6 +377,9 @@
    </property>
   </action>
   <action name="actionSaveResult">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/icons/icons/txt.png</normaloff>:/icons/icons/txt.png</iconset>

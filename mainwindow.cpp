@@ -126,10 +126,10 @@ bool MainWindow::save()
         xmlWriter.writeStartElement("edges");
         for(int i = 0; i < grafScene->getCountEdges(); i++)
         {
-            xmlWriter.writeStartElement("vertex");
-            xmlWriter.writeAttribute("numVertex", QString::number(i + 1));
-            xmlWriter.writeAttribute("x", QString::number(grafScene->getVertexPosX(i)));
-            xmlWriter.writeAttribute("y", QString::number(grafScene->getVertexPosY(i)));
+            xmlWriter.writeStartElement("edge");
+            xmlWriter.writeAttribute("numEdge", QString::number(i + 1));
+            xmlWriter.writeAttribute("vertexLeft", QString::number(grafScene->getEdgeVertexLeft(i)));
+            xmlWriter.writeAttribute("vertexRight", QString::number(grafScene->getEdgeVertexRight(i)));
             xmlWriter.writeEndElement();
         }
         xmlWriter.writeEndElement();
@@ -165,5 +165,5 @@ void MainWindow::on_actionSaveResult_triggered()
 
 void MainWindow::on_actionClear_triggered()
 {
-
+    grafScene->clearScene();
 }

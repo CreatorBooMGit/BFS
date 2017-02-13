@@ -22,8 +22,14 @@ public:
     qreal getVertexPosY(int index);
 
     int getCountEdges();
+    int getEdgeVertexLeft(int index);
+    int getEdgeVertexRight(int index);
 
-//    void clearScene();
+    void clearScene();
+
+    void addVertex(qreal posX, qreal posY);
+
+    void addEdge(int numVertexLeft, int numVertexRight);
 
 signals:
 //    void lightingEdge(vertexLeft, vertexRight);
@@ -49,7 +55,8 @@ public slots:
 private:
     QQuickView *quickView;
     QVector<QObject *> vertices;
-    QVector<QVector<QObject *> > edges;
+    QVector<QObject *> edges;
+    QVector<QVector<QObject *> > matrixEdges;
     QObject *root;
 
     int countVertices = 0;

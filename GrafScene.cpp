@@ -40,10 +40,30 @@ int GrafScene::getCountEdges()
     return countEdges;
 }
 
-//void GrafScene::clearScene()
-//{
-//    QMetaObject::invokeMethod(root, "methodClearScene");
-//}
+int GrafScene::getEdgeVertexLeft(int index)
+{
+    return edges[index]->property("numVertexLeft").toInt();
+}
+
+int GrafScene::getEdgeVertexRight(int index)
+{
+    return edges[index]->property("numVertexRight").toInt();
+}
+
+void GrafScene::clearScene()
+{
+    QMetaObject::invokeMethod(root, "methodClearScene");
+}
+
+void GrafScene::addVertex(qreal posX, qreal posY)
+{
+
+}
+
+void GrafScene::addEdge(int numVertexLeft, int numVertexRight)
+{
+
+}
 
 void GrafScene::slotSetRoot(QObject *object)
 {
@@ -57,10 +77,10 @@ void GrafScene::slotAddVertex(QObject *object)
     vertices.push_back(object);
 
     QVector<QObject *> tmp(countVertices, NULL);
-    edges.push_back(tmp);
+    matrixEdges.push_back(tmp);
 
-    for(int row = 0 ; row < edges.size() - 1; row++)
-        edges[row].push_back(NULL);
+    for(int row = 0 ; row < matrixEdges.size() - 1; row++)
+        matrixEdges[row].push_back(NULL);
 
     emit vertexAdded();
 }
@@ -71,9 +91,9 @@ void GrafScene::slotRemoveVertex(int index)
 
     vertices.remove(index - 1);
 
-    for(int row = 0 ; row < edges.size(); row++)
-        edges[row].remove(index - 1);
-    edges.remove(index - 1);
+    for(int row = 0 ; row < matrixEdges.size(); row++)
+        matrixEdges[row].remove(index - 1);
+    matrixEdges.remove(index - 1);
 
     emit vertexRemoved(index);
 }
@@ -82,9 +102,11 @@ void GrafScene::slotAddEdge(QObject *object, int vertexLeft, int vertexRight, bo
 {
     countEdges++;
 
-    edges[vertexLeft - 1][vertexRight - 1] = object;
+    edges.push_back(object);
+
+    matrixEdges[vertexLeft - 1][vertexRight - 1] = object;
     if(!directed)
-        edges[vertexRight - 1][vertexLeft - 1] = object;
+        matrixEdges[vertexRight - 1][vertexLeft - 1] = object;
 
     emit edgeAdded(vertexLeft, vertexRight, directed);
 }
@@ -93,9 +115,11 @@ void GrafScene::slotRemoveEdge(int index, int vertexLeft, int vertexRight, bool 
 {
     countEdges--;
 
-    edges[vertexLeft - 1][vertexRight - 1] = NULL;
+    edges.remove(index - 1);
+
+    matrixEdges[vertexLeft - 1][vertexRight - 1] = NULL;
     if(!directed)
-        edges[vertexRight - 1][vertexLeft - 1] = NULL;
+        matrixEdges[vertexRight - 1][vertexLeft - 1] = NULL;
 
     emit edgeRemoved(index, vertexLeft, vertexRight, directed);
 }
@@ -107,6 +131,6 @@ void GrafScene::slotClearLightingEdges()
 
 void GrafScene::slotLightingEdge(int indexVertexLeft, int indexVertexRight)
 {
-    QMetaObject::invokeMethod(root, "methodAddLightingEdge", Q_ARG(QVariant, qVariantFromValue((QObject *) edges[indexVertexLeft][indexVertexRight])));
-    QMetaObject::invokeMethod(edges[indexVertexLeft][indexVertexRight], "lightingEdge", Q_ARG(QVariant, true));
+    QMetaObject::invokeMethod(root, "methodAddLightingEdge", Q_ARG(QVariant, qVariantFromValue((QObject *) matrixEdges[indexVertexLeft][indexVertexRight])));
+    QMetaObject::invokeMethod(matrixEdges[indexVertexLeft][indexVertexRight], "lightingEdge", Q_ARG(QVariant, true));
 }

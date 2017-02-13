@@ -14,6 +14,8 @@ Rectangle {
     property real y2: 0
 
     property int numEdge : -1
+    property int numVertexLeft : -1
+    property int numVertexRight : -1
 
     property bool edgeLighting : false
 
@@ -48,6 +50,8 @@ Rectangle {
 
     onSetVertices: {
         LineLogic.setVertices(vertexLeft, vertexRight)
+        numVertexLeft = vertexLeft.numVertex;
+        numVertexRight = vertexRight.numVertex;
     }
 
     onLightingEdge: {
