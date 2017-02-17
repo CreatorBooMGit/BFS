@@ -57,12 +57,13 @@ void GrafScene::clearScene()
 
 void GrafScene::addVertex(qreal posX, qreal posY)
 {
-
+    QMetaObject::invokeMethod(root, "methodAddVertex", Q_ARG(QVariant, posX), Q_ARG(QVariant, posY));
 }
 
 void GrafScene::addEdge(int numVertexLeft, int numVertexRight)
 {
-
+    QMetaObject::invokeMethod(root, "methodAddEdge", Q_ARG(QVariant, qVariantFromValue((QObject *) vertices[numVertexLeft - 1])),
+            Q_ARG(QVariant, qVariantFromValue((QObject *) vertices[numVertexRight - 1])));
 }
 
 void GrafScene::slotSetRoot(QObject *object)
@@ -122,6 +123,17 @@ void GrafScene::slotRemoveEdge(int index, int vertexLeft, int vertexRight, bool 
         matrixEdges[vertexRight - 1][vertexLeft - 1] = NULL;
 
     emit edgeRemoved(index, vertexLeft, vertexRight, directed);
+}
+
+void GrafScene::slotClearLightingVertices()
+{
+    QMetaObject::invokeMethod(root, "methodClearLightingVertices");
+}
+
+void GrafScene::slotLightingVertex(int index)
+{
+    QMetaObject::invokeMethod(root, "methodAddLightingVertex", Q_ARG(QVariant, qVariantFromValue((QObject *) vertices[index])));
+    QMetaObject::invokeMethod(vertices[index], "lightingVertex", Q_ARG(QVariant, true));
 }
 
 void GrafScene::slotClearLightingEdges()

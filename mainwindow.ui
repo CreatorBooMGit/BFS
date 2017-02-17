@@ -309,6 +309,7 @@
     <addaction name="actionDownload"/>
     <addaction name="separator"/>
     <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -389,12 +390,23 @@
    </property>
   </action>
   <action name="actionClear">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="icons.qrc">
      <normaloff>:/icons/icons/error.png</normaloff>:/icons/icons/error.png</iconset>
    </property>
    <property name="text">
     <string>Очистить пути</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Сохранить как...</string>
    </property>
   </action>
  </widget>

@@ -41,3 +41,5 @@ RESOURCES += \
     qml.qrc \
     images.qrc \
     icons.qrc
+
+RC_ICONS = icons/graph.ico

@@ -48,9 +48,11 @@ public slots:
     void slotAddEdge(QObject *object, int vertexLeft, int vertexRight, bool directed = false);
     void slotRemoveEdge(int index, int vertexLeft, int vertexRight, bool directed = false);
 
+    void slotClearLightingVertices();
+    void slotLightingVertex(int index);
+
     void slotClearLightingEdges();
     void slotLightingEdge(int indexVertexLeft, int indexVertexRight);
-
 
 private:
     QQuickView *quickView;

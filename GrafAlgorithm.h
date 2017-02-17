@@ -18,13 +18,17 @@ public:
     void setTableAdjacency(QTableWidget *value);
     void setListResult(QListWidget *value);
 
-
 //    void removeEdge();
 //    void swapEdge();
 
 signals:
+    void clearLightingVertices();
+    void lightingVertex(int index);
+
     void clearLightingEdges();
     void lightingEdge(int vertexLeft, int vertexRight);
+
+    void showGraph();
 
 public slots:
     void slotAddVertex();

@@ -8,9 +8,12 @@ Rectangle {
 
     property int numVertex : -1
 
+    property bool vertexLighting : false
+
     signal addEdge(var edge)
     signal removeEdge(var edge)
     signal checkEdge(var vertex)
+    signal lightingVertex(var enable)
     signal destroySignal()
 
     onAddEdge: {
@@ -30,10 +33,21 @@ Rectangle {
         VertexLogic.destroy()
     }
 
+    onLightingVertex: {
+        vertexLighting = enable
+    }
+
 //    Connections {
 //        target: grafScene
 
 //    }
+
+    onVertexLightingChanged: {
+        if(vertexLighting)
+            root.color = "#0DBCE8"
+        else
+            root.color = "#B5DEB5"
+    }
 
     height: 25
     width: 25
@@ -60,6 +74,9 @@ Rectangle {
         onClicked: {
             if(MainLogic.getNewItemState() === 0 || MainLogic.getNewItemState() === 1)
             {
+                MainLogic.clearLightingVertices()
+                MainLogic.addLightingVertex(root)
+                lightingVertex(true)
                 VertexLogic.lightingEdges();
             }
             if(MainLogic.getNewItemState() === 2)

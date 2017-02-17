@@ -7,6 +7,7 @@ var scene = null
 var sceneMouseArea = null
 
 var vertices = []
+var verticesLighting = []
 var choosedVertex = null
 
 var matrixEdges = []
@@ -48,11 +49,28 @@ function setSceneMouseArea(_sceneMouseArea) {
 function setNewItemState(state) {
     newItemState = state
     root.chooseItemState = state
-//    console.log(root.chooseItemState)
 }
 
 function getNewItemState() {
     return newItemState
+}
+
+function addVertexPos(posX, posY)
+{
+    var component = Qt.createComponent("qrc:/Vertex.qml")
+    if (component.status === QML.Component.Ready) {
+        var childRec = component.createObject(scene)
+        childRec.x = posX
+        childRec.y = posY
+        childRec.numVertex = vertices.length + 1
+        vertices.push(childRec)
+        graph.slotAddVertex(childRec)
+        for(var i = 0; i < matrixEdges.length; i++)
+            matrixEdges[i].push(0);
+        matrixEdges.push([]);
+        for(var i = 0; i < matrixEdges.length; i++)
+            matrixEdges[matrixEdges.length - 1].push(0);
+    }
 }
 
 function addVertex() {
@@ -77,6 +95,9 @@ function deleteVertex(vertex) {
     vertices.remove(vertex)
     reloadNumberVertex(vertex.numVertex)
     graph.slotRemoveVertex(vertex.numVertex)
+    matrixEdges.splice(vertex.numVertex - 1, 1)
+    for(var i = 0; i < matrixEdges.length; i++)
+        matrixEdges[i].splice(vertex.numVertex - 1, 1)
 }
 
 function setChoosedVertex(vertex) {
@@ -101,10 +122,6 @@ function addEdge(vertex) {
                     matrixEdges[vertex.numVertex - 1][tmpLeftVertexToNewEdge.numVertex - 1] === 1)
                 return;
 
-            for(var i = 0; i < matrixEdges.length; i++)
-                console.log(matrixEdges[i])
-            console.log("DADADA")
-
             tmpRightVertexToNewEdge = vertex
             var childRec = createEdge()
             tmpLeftVertexToNewEdge.addEdge(childRec)
@@ -121,6 +138,8 @@ function addEdge(vertex) {
 
 function deleteEdge(edge)
 {
+    matrixEdges[edge.numVertexLeft - 1][edge.numVertexRight - 1] = 0;
+    matrixEdges[edge.numVertexRight - 1][edge.numVertexLeft - 1] = 0;
     edges.remove(edge)
     edgesChoosed.remove(edge)
     edge.lightingEdge(false)
@@ -157,12 +176,23 @@ function createEdge() {
     }
 }
 
+function addLightingVertex(vertex) {
+    verticesLighting.push(vertex)
+}
+
 function addLightingEdge(edge) {
     edgesLighting.push(edge)
 }
 
+function clearLightingVertices() {
+    for(var i = 0; i < verticesLighting.length; i++) {
+        verticesLighting[i].lightingVertex(false)
+    }
+
+    verticesLighting = []
+}
+
 function clearLightingEdges() {
-    console.log(edges.length)
     for (var i = 0; i < edgesLighting.length; i++) {
         edgesLighting[i].lightingEdge(false)
     }
@@ -179,11 +209,9 @@ function getEdgeChecked() {
 }
 
 function addAllEdge() {
-//    console.log("vertices.length:", vertices.length)
     for (var i = 0; i < vertices.length; i++) {
         for (var j = 0; j < vertices.length; j++) {
             if (vertices[i] !== vertices[j]) {
-                //                console.log("pc");
                 addEdge(vertices[i])
                 addEdge(vertices[j])
             } else
@@ -221,8 +249,7 @@ function edgeChoose() {
 
 function deleteAllVertices()
 {
-    for(var i = 0; i < vertices.length; i++)
-    {
-        vertices[i].destroySignal();
-    }
+    while(vertices.length !== 0)
+        vertices[0].destroySignal();
+    matrixEdges = []
 }

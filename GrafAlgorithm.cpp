@@ -1,6 +1,7 @@
 #include "GrafAlgorithm.h"
 
 #include <QDebug>
+#include <QMessageBox>
 #include <QQueue>
 #include <iostream>
 
@@ -207,6 +208,9 @@ void GrafAlgorithm::BFS(int index)
             QString str;
             str.append(tr("Вершина %1: %2").arg(vertex + 1).arg(tr("Путь не найден")));
             listResult->addItem(str);
+
+            QVector<int> emptyPath;
+            paths.push_back(emptyPath);
 //            qDebug() << str;
             continue;
         }
@@ -232,6 +236,23 @@ void GrafAlgorithm::BFS(int index)
 void GrafAlgorithm::slotShowPath(int index)
 {
     emit clearLightingEdges();
+    emit clearLightingVertices();
+
+    if(paths[index].size() == 0)
+    {
+        QMessageBox message;
+        message.setIcon(QMessageBox::Warning);
+        message.setWindowTitle("Ошибка");
+        message.setText("Нет пути к выбранной вершине!\nПопробуйте выбрать другую вершину.");
+        message.exec();
+        return;
+    }
+
     for(int i = 0; i < paths[index].size() - 1; i++)
+    {
+        emit lightingVertex(paths[index][i]);
         emit lightingEdge(paths[index][i], paths[index][i + 1]);
+    }
+    emit lightingVertex(paths[index][paths[index].size() - 1]);
+    emit showGraph();
 }

@@ -25,6 +25,8 @@ signals:
 private slots:
     void slotAddVertex();
     void slotRemoveVertex();
+    void slotShowGraph();
+
     void on_pushButtonExecute_clicked();
     void on_listWidgetPath_doubleClicked(const QModelIndex &index);
 
@@ -35,6 +37,8 @@ private slots:
     void on_actionDownload_triggered();
     void on_actionSaveResult_triggered();
     void on_actionClear_triggered();
+
+    void on_actionSaveAs_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -47,8 +51,11 @@ private:
     bool createdProject = false;
     QString filename;
 
-    bool setFilename();
+    bool setFilenameOpen();
+    bool setFilenameSave();
     bool save();
+    bool saveResult();
+    bool download();
 };
 
 #endif // MAINWINDOW_H
