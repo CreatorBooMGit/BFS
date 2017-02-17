@@ -3,5 +3,6 @@
         <file>circle.png</file>
         <file>line.png</file>
         <file>cursor.png</file>
+        <file>the_matrix.png</file>
     </qresource>
 </RCC>

@@ -8,6 +8,5 @@
         <file>icons/exit.png</file>
         <file>icons/download.png</file>
         <file>icons/close.png</file>
-        <file>icons/graph_icon.png</file>
     </qresource>
 </RCC>

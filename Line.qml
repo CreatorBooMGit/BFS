@@ -141,8 +141,8 @@ Rectangle {
                 LineLogic.destroy()
             }
         }
-        MenuItem {
-            text: "Направление"
+//        MenuItem {
+//            text: "Направление"
 
             //            Menu {
             //                id: directionMenu
@@ -167,7 +167,7 @@ Rectangle {
             //                    onTriggered: LineLogic.swapVertex()
             //                }
             //            }
-        }
+//        }
     }
 }
 
