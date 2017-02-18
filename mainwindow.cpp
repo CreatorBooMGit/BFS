@@ -7,6 +7,7 @@
 #include <QFile>
 #include <QXmlStreamWriter>
 #include <QMessageBox>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -111,6 +112,7 @@ void MainWindow::on_actionCreate_triggered()
         ui->actionClose->setEnabled(true);
         ui->actionSaveResult->setEnabled(true);
         ui->actionClear->setEnabled(true);
+        ui->centralwidget->setEnabled(true);
     }
 }
 
@@ -285,12 +287,20 @@ void MainWindow::on_actionDownload_triggered()
         ui->actionClose->setEnabled(true);
         ui->actionSaveResult->setEnabled(true);
         ui->actionClear->setEnabled(true);
+        ui->centralwidget->setEnabled(true);
     }
 }
 
 void MainWindow::on_actionClose_triggered()
 {
     grafScene->clearScene();
+    ui->actionSave->setEnabled(false);
+    ui->actionSaveAs->setEnabled(false);
+    ui->actionClose->setEnabled(false);
+    ui->actionSaveResult->setEnabled(false);
+    ui->actionClear->setEnabled(false);
+    ui->centralwidget->setEnabled(false);
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_actionSaveResult_triggered()
@@ -330,4 +340,25 @@ bool MainWindow::setFilenameOpen()
     }
     else
         return false;
+}
+
+void MainWindow::on_listWidgetPath_customContextMenuRequested(const QPoint &pos)
+{
+    QMenu customMenu;
+
+    customMenu.addAction(ui->actionClear);
+
+    QPoint globalPos = ui->listWidgetPath->mapFromGlobal(pos);
+
+    customMenu.exec(globalPos);
+}
+
+void MainWindow::on_actionHelp_triggered()
+{
+    QDesktopServices::openUrl(QApplication::applicationDirPath() + "/help/index.htm");
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+
 }

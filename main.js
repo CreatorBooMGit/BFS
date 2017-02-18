@@ -93,6 +93,7 @@ function addVertex() {
 function deleteVertex(vertex) {
     clearLightingEdges()
     vertices.remove(vertex)
+    verticesLighting.remove(vertex)
     reloadNumberVertex(vertex.numVertex)
     graph.slotRemoveVertex(vertex.numVertex)
     matrixEdges.splice(vertex.numVertex - 1, 1)
@@ -108,7 +109,7 @@ function reloadNumberVertex(numVertex)
 {
     for(var i = 0; i < vertices.length; i++)
         if(vertices[i].numVertex > numVertex)
-            vertices[i].numVertex--;
+            vertices[i].decrement()
 }
 
 function addEdge(vertex) {

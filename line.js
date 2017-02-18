@@ -14,10 +14,10 @@ function setRootEdge(edge)
 
 function destroy()
 {
+    MainLogic.deleteEdge(edgeRoot)
     vertexLeft.removeEdge(edgeRoot);
     vertexRight.removeEdge(edgeRoot);
     MainLogic.graph.slotRemoveEdge(edgeRoot.numEdge, vertexLeft.numVertex, vertexRight.numVertex, false)
-    MainLogic.deleteEdge(edgeRoot)
     edgeRoot.destroy();
 }
 

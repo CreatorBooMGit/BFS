@@ -1,0 +1,12 @@
+Q
+ 15,14
+Q.EMPTY
+ 15
+Q.FRONT
+ 15
+Q.POP
+ 15
+Q.PUSH
+ 15
+QUEUE
+ 15

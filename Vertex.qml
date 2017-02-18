@@ -15,9 +15,9 @@ Rectangle {
     signal checkEdge(var vertex)
     signal lightingVertex(var enable)
     signal destroySignal()
+    signal decrement()
 
     onAddEdge: {
-//        console.log("onAddEdge:", edge)
         VertexLogic.addEdge(edge)
     }
 
@@ -35,6 +35,11 @@ Rectangle {
 
     onLightingVertex: {
         vertexLighting = enable
+    }
+
+    onDecrement: {
+        root.numVertex--;
+        VertexLogic.decrementEdges()
     }
 
 //    Connections {
@@ -88,7 +93,6 @@ Rectangle {
                 contextVertex.popup()
             }
 
-//            console.log("clickedVertex");
         }
 
         drag {

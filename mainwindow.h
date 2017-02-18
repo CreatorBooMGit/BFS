@@ -40,6 +40,12 @@ private slots:
 
     void on_actionSaveAs_triggered();
 
+    void on_listWidgetPath_customContextMenuRequested(const QPoint &pos);
+
+    void on_actionHelp_triggered();
+
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
 

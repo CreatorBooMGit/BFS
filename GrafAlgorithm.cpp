@@ -211,7 +211,6 @@ void GrafAlgorithm::BFS(int index)
 
             QVector<int> emptyPath;
             paths.push_back(emptyPath);
-//            qDebug() << str;
             continue;
         }
         if(vertex == index)
@@ -229,7 +228,6 @@ void GrafAlgorithm::BFS(int index)
         str.append(QString(" %1").arg(path[path.size() - 1] + 1));
         paths.push_back(path);
         listResult->addItem(str);
-//        qDebug() << str;
     }
 }
 

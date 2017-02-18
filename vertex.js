@@ -24,20 +24,15 @@ function setVertexRoot(vertex)
 
 function addEdge(edge){
     edges.push(edge);
-//    console.log("add edge:", edge);
-//    console.log("edges:", edges);
 }
 
 function removeEdge(edge)
 {
     edges.remove(edge)
-//    console.log(edges)
 }
 
 function destroy()
 {
-//    console.log("edges.length:", edges.length)
-//    console.log("edges:", edges)
     for(var i = 0; i < edges.length; )
         edges[i].destroySignal()
 
@@ -47,8 +42,6 @@ function destroy()
 
 function checkEdge(vertex)
 {
-//    console.log("edges(vertex):", edges)
-//    console.log("edges(vertex).length:", edges.length)
     for(var i = 0; i < edges.length; i++)
         if(!edges[i].checkEdge(vertex))
             return false;
@@ -63,7 +56,6 @@ function changedPosition()
     for(var i = 0; i < edges.length; i++)
     {
         edges[i].vertexChangedPosition(vertexRoot);
-//        console.log("send");
     }
 
     xLast = vertexRoot.x;
@@ -78,4 +70,10 @@ function lightingEdges()
         edges[i].lightingEdge(true);
         MainLogic.addLightingEdge(edges[i]);
     }
+}
+
+function decrementEdges()
+{
+    for(var i = 0; i < edges.length; i++)
+        edges[i].decrement(vertexRoot)
 }

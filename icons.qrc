@@ -8,5 +8,7 @@
         <file>icons/exit.png</file>
         <file>icons/download.png</file>
         <file>icons/close.png</file>
+        <file>icons/help.png</file>
+        <file>icons/info.png</file>
     </qresource>
 </RCC>

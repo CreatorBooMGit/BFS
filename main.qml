@@ -41,7 +41,6 @@ Rectangle {
 
     function methodAddLightingEdge(edge)
     {
-        console.log(edge);
         MainLogic.addLightingEdge(edge)
     }
 
@@ -289,7 +288,6 @@ Rectangle {
             acceptedButtons: Qt.RightButton | Qt.LeftButton
 
             onClicked: {
-                console.log("6")
                 if(mouse.button & Qt.LeftButton)
                 {
                     if(chooseItemState === 0)

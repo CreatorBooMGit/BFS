@@ -28,6 +28,7 @@ Rectangle {
     signal checkEdge(var vertex)
     signal lightingEdge(var enable)
     signal destroySignal()
+    signal decrement(var vertex)
 
     onCheckEdge: {
         if((LineLogic.vertexLeft === vertex || LineLogic.vertexRight === vertex))
@@ -62,6 +63,14 @@ Rectangle {
         LineLogic.destroy()
     }
 
+    onDecrement: {
+        if(LineLogic.vertexLeft === vertex)
+            root.numVertexLeft--;
+        else
+            if(LineLogic.vertexRight === vertex)
+                root.numVertexRight--;
+    }
+
 
     x: x1
     y: y1
@@ -73,7 +82,6 @@ Rectangle {
     rotation: LineLogic.getAngle(x1, y1, x2, y2)
 
     onRotationChanged: {
-//        console.log("rotation:", rotation)
 //        if(root.rotation > 90 && root.rotation < 270)
 //            text.anchors.top = root.bottom
 //        else
@@ -110,10 +118,8 @@ Rectangle {
 
         onClicked: {
             LineLogic.lightingEdge()
-//            console.log("dadadaa")
             if(mouse.button & Qt.RightButton)
             {
-//                console.log("dadadaa2")
                 contextEdge.popup()
             }
         }

@@ -1,0 +1,8 @@
+G
+ 15
+GRAPH
+ 2
+G[V].SIZE
+ 15
+G[V][I
+ 15

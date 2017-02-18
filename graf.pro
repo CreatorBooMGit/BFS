@@ -43,3 +43,12 @@ RESOURCES += \
     icons.qrc
 
 RC_ICONS = icons/graph.ico
+
+CONFIG(release, debug|release): DESTDIR = $$OUT_PWD/release
+CONFIG(debug, debug|release): DESTDIR = $$OUT_PWD/debug
+
+help_to_build.path = $$DESTDIR/help
+help_to_build.files = help/*
+
+INSTALLS += \
+    help_to_build

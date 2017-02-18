@@ -14,6 +14,9 @@
    <string>Graph</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
      <number>1</number>
@@ -176,6 +179,9 @@
            </property>
            <item row="3" column="1" colspan="2">
             <widget class="QListWidget" name="listWidgetPath">
+             <property name="contextMenuPolicy">
+              <enum>Qt::CustomContextMenu</enum>
+             </property>
              <property name="viewMode">
               <enum>QListView::ListMode</enum>
              </property>
@@ -296,9 +302,6 @@
     <property name="title">
      <string>Система</string>
     </property>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
@@ -321,9 +324,17 @@
     <addaction name="separator"/>
     <addaction name="actionClear"/>
    </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
    <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
@@ -407,6 +418,27 @@
    </property>
    <property name="text">
     <string>Сохранить как...</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
+   </property>
+   <property name="text">
+    <string>Констекстная справка</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icons/info.png</normaloff>:/icons/icons/info.png</iconset>
+   </property>
+   <property name="text">
+    <string>О программе...</string>
    </property>
   </action>
  </widget>
