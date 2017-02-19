@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QSplashScreen *splash = new QSplashScreen;
-    QPixmap *pix = new QPixmap(":/images/the_matrix.png");
+    QPixmap *pix = new QPixmap(":/images/graph.png");
     splash->setPixmap(*pix);
     splash->show();
     splash->showMessage(QObject::tr("Загрузка."), Qt::AlignLeft | Qt::AlignBottom, Qt::white);
