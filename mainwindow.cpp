@@ -360,5 +360,11 @@ void MainWindow::on_actionHelp_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-
+    QMessageBox messageInfo;
+    messageInfo.setIcon(QMessageBox::Information);
+    messageInfo.setWindowTitle("О программе");
+    messageInfo.setText("Курсовая работа \"Графы. Алгоритм поиска в ширину\"\n"
+                        "Студента группы 472\n"
+                        "Соловьев А.А.");
+    messageInfo.exec();
 }
