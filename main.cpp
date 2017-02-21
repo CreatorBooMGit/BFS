@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     splash->showMessage(QObject::tr("Загрузка..."), Qt::AlignLeft | Qt::AlignBottom, Qt::white);
     MainWindow w;
     splash->showMessage(QObject::tr("Запуск"), Qt::AlignLeft | Qt::AlignBottom, Qt::yellow);
+    Sleep(5000);
     w.show();
     splash->finish(&w);
     delete splash;
